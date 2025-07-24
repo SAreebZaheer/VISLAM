@@ -38,9 +38,11 @@ class laserSensor:
                 u = i/100
                 x = int(x2 * u + x1 * (1-u))
                 y = int(y2 * u + y1 * (1-u))
-                if 0 < x < self.w and 0 < y < self.h:
+                if 0<x<self.w and 0<y<self.h:
                     color = self.map.get_at((x,y))
+                    print(f"Checking pixel ({x}, {y}) - Color: {color}")
                     if ((color[0],color[1],color[2]) == (0,0,0)):
+                        print(f"Obstacle detected at ({x}, {y})!")
                         distance = self.distance((x,y))
                         output = uncertainty_add(distance,angle,self.sigma)
                         output.append(self.position)
